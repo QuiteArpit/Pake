@@ -43,6 +43,11 @@ on:
         description: "App version"
         required: false
         default: "1.0.0"
+      enable_find:
+        description: "Use PAKE Find UI"
+        required: false
+        type: boolean
+        default: false
       fullscreen:
         description: "Start in fullscreen mode"
         required: false
@@ -132,6 +137,10 @@ jobs:
 
           if [ -n "${{ inputs.app_version }}" ]; then
             ARGS+=("--app-version" "${{ inputs.app_version }}")
+          fi
+
+          if [ "${{ inputs.enable_find }}" == "true" ]; then
+            ARGS+=("--enable-find")
           fi
 
           if [ "${{ inputs.fullscreen }}" == "true" ]; then
